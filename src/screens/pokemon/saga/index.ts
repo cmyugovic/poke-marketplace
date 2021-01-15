@@ -7,7 +7,7 @@ import { Pokemon } from "../model/pokemon.model";
 function* getList() {
   yield takeLatest(POKEMON.GET_LIST_REQUEST, function* () {
     try {
-      const response = yield call(api.get, `/pokemon`);
+      const response = yield call(api.get, `/pokemon?limit=50`);
       const promises: any = [];
       response.data.results.forEach(async (pokemon: Pokemon) => {
         promises.push(call(api.get, `/pokemon/${pokemon.name}`));
